@@ -12,6 +12,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.event.ServerListener;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.Document;
 
 /**
@@ -20,6 +22,8 @@ import org.bson.Document;
  */
 public class Main {
     public static void main(String[] args) {
+        Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
+        mongoLogger.setLevel(Level.SEVERE);
         final ServerListener listener = new MyServerListener();
         MongoClientOptions.Builder options = new MongoClientOptions.Builder()
                 .addServerListener(listener);
